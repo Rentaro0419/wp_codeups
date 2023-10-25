@@ -168,15 +168,7 @@
                 <h3>アーカイブ</h3>
               </div>
               <ul>
-                <li class="sidebar__archive-title js-toggle-title">
-                  2023
-                  <ul class="sidebar__archive-item js-toggle-item">
-                    <li><a href="">3月</a></li>
-                    <li><a href="">2月</a></li>
-                    <li><a href="">1月</a></li>
-                  </ul>
-                </li>
-                <li>2022</li>
+                <?php blog_get_archives(); ?>
               </ul>
             </div>
           </div>

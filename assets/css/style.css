@@ -565,6 +565,10 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 	margin-top: 1rem;
 }
 
+.form__privacy span {
+	display: block;
+}
+
 .form__privacy-item {
 	cursor: pointer;
 }
@@ -598,6 +602,14 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 	text-align: center;
 }
 
+.form__btn input {
+	color: #fff;
+}
+
+.form__btn input:hover {
+	color: #408F95;
+}
+
 .form__submit {
 	background: #408F95;
 	border: solid 1px transparent; /* 透明な境界線を追加 */
@@ -622,7 +634,7 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 	transition: 0.2s cubic-bezier(0.45, 0, 0.55, 1);
 }
 
-.form__submit:before {
+.form__arrow:before {
 	border: 1px solid #408F95;
 	content: "";
 	height: calc(100% - 2px);
@@ -633,7 +645,7 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 	z-index: 5;
 }
 
-.form__submit:after {
+.form__arrow:after {
 	background: #fff;
 	content: "";
 	height: 100%;
@@ -3728,6 +3740,10 @@ html {
 .category__tab {
 	display: inline-block;
 	width: 10.5625rem;
+}
+
+.category__tab:not(:first-child) {
+	margin-left: 1.875rem;
 }
 
 .common-btn {

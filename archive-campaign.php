@@ -90,7 +90,7 @@
       </div>
       <div class="campaign-page__pagination">
         <div class="wp-pagenavi">
-          <?php wp_pagenavi(); ?>
+          <?php if ( function_exists( 'wp_pagenavi' ) ) { wp_pagenavi(); } ?>
         </div>
       </div>
     </div>

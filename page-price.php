@@ -26,41 +26,41 @@
           <dl class="price-page__content">
             <dt>ライセンス講習</dt>
             <dd>
-              <div class="price-page__list">
-                <?php
+              <?php
                 $license_fields = SCF::get_option_meta('price_options', 'license_lists');
                 foreach ($license_fields as $license_field_name => $license_value) {
                   $license_content = esc_html($license_value['license_content']);
                   $license_subContent = esc_html($license_value['license_subContent']);
                   $license_price = esc_html($license_value['license_price']);
                 ?>
+              <div class="price-page__list">
                 <?php if ($license_content && $license_subContent && $license_price) : ?>
                 <div class="price-page__detail">
-                  <?php echo $license_content; ?>
+                  <?php echo $license_content; ?><br class="u-mobile"><?php echo $license_subContent; ?>
                 </div>
                 <div class="price-page__price">&yen;<?php
                           $license_prices = number_format($license_price);
                           echo $license_prices;
                           ?></div>
-                <?php endif; ?>
-                <?php } ?>
               </div>
+              <?php endif; ?>
+              <?php } ?>
             </dd>
           </dl>
           <dl class="price-page__content">
             <dt>体験ダイビング</dt>
             <dd>
-              <div class="price-page__list">
-                <?php
+              <?php
               $experience_fields = SCF::get_option_meta('price_options', 'experience_lists');
               foreach ($experience_fields as $experience_field) {
                 $experience_content = esc_html($experience_field['experience_content']);
                 $experience_subContent = esc_html($experience_field['experience_subContent']);
                 $experience_price = esc_html($experience_field['experience_price']);
               ?>
-                <?php if ($experience_content && $experience_subContent && $experience_price) : ?>
+              <?php if ($experience_content && $experience_subContent && $experience_price) : ?>
+              <div class="price-page__list">
                 <div class="price-page__detail">
-                  <?php echo $experience_content; ?><?php echo $experience_subContent; ?>
+                  <?php echo $experience_content; ?><br class="u-mobile"><?php echo $experience_subContent; ?>
                 </div>
                 <div class="price-page__price">&yen;<?php
                           $experience_prices = number_format($experience_price);
@@ -74,17 +74,17 @@
           <dl class="price-page__content">
             <dt>ファンダイビング</dt>
             <dd>
-              <div class="price-page__list">
-                <?php
+              <?php
               $fan_fields = SCF::get_option_meta('price_options', 'fan_lists');
               foreach ($fan_fields as $fan_field) {
                 $fan_content = esc_html($fan_field['fan_content']);
                 $fan_subContent = esc_html($fan_field['fan_subContent']);
                 $fan_price = esc_html($fan_field['fan_price']);
               ?>
-                <?php if ($fan_content && $fan_subContent && $fan_price) : ?>
+              <?php if ($fan_content && $fan_subContent && $fan_price) : ?>
+              <div class="price-page__list">
                 <div class="price-page__detail">
-                  <?php echo $fan_content; ?><?php echo $fan_subContent; ?>
+                  <?php echo $fan_content; ?><br class="u-mobile"><?php echo $fan_subContent; ?>
                 </div>
                 <div class="price-page__price">&yen;<?php
                           $fan_prices = number_format($fan_price);
@@ -108,7 +108,7 @@
               <?php if ($special_content && $special_subContent && $special_price) : ?>
               <div class="price-page__list">
                 <div class="price-page__detail">
-                  <?php echo $special_content; ?><?php echo $special_subContent; ?>
+                  <?php echo $special_content; ?><br class="u-mobile"><?php echo $special_subContent; ?>
                 </div>
                 <div class="price-page__price">&yen;<?php
                           $special_prices = number_format($special_price);

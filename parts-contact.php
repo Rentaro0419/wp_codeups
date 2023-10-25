@@ -38,7 +38,7 @@
             </div>
             <p class="contact__block-text">ご予約・お問い合わせはコチラ</p>
             <div class="contact__btn">
-              <a href="contact.html" class="common-btn">
+              <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="common-btn">
                 <p>Contact us</p>
               </a>
             </div>

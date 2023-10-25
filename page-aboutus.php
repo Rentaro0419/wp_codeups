@@ -44,8 +44,9 @@
           </h3>
           <div class="about-page__content-text">
             <p>
-              ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-              ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
+              私たちは情熱を持ってダイビングの世界を案内するダイビングインストラクター集団です。海の美しさと驚異に魅了され、その素晴らしさを多くの人々と共有することに情熱を燃やしています。<br
+                class="u-desktop">
+              安全性を最優先に考えながら、初心者から経験豊富なダイバーまで、様々なレベルの方々に楽しいダイビング体験を提供しています。
             </p>
           </div>
         </div>
@@ -63,67 +64,33 @@
         <h2 class="title-jp">フォト</h2>
       </div>
       <div class="gallery__block">
-        <figure class="gallery__image" data-micromodal-trigger="js-modal1">
-          <img src="./assets/images/common/gallery1.png" alt="" />
+        <?php
+        $repeat_item = SCF::get_option_meta('gallery_options', 'gallery_lists');
+        foreach ($repeat_item as $index => $fields) {
+          $image_url = wp_get_attachment_image_src($fields['gallery_item'], 'full');
+        ?>
+        <figure class="gallery__image" data-micromodal-trigger="js-modal<?php echo $index + 1; ?>">
+          <img src="<?php echo $image_url[0]; ?>" alt="ギャラリーの画像" />
         </figure>
-        <figure class="gallery__image" data-micromodal-trigger="js-modal2">
-          <img src="./assets/images/common/gallery2.png" alt="" />
-        </figure>
-        <figure class="gallery__image" data-micromodal-trigger="js-modal3">
-          <img src="./assets/images/common/gallery3.png" alt="" />
-        </figure>
-        <figure class="gallery__image" data-micromodal-trigger="js-modal4">
-          <img src="./assets/images/common/gallery4.png" alt="" />
-        </figure>
-        <figure class="gallery__image" data-micromodal-trigger="js-modal5">
-          <img src="./assets/images/common/gallery5.png" alt="" />
-        </figure>
-        <figure class="gallery__image" data-micromodal-trigger="js-modal6">
-          <img src="./assets/images/common/gallery6.png" alt="" />
-        </figure>
+        <?php
+        }
+        ?>
       </div>
-      <div class="gallery__modal modal modal--slide" id="js-modal1" aria-hidden="true">
+      <?php
+        $repeat_item = SCF::get_option_meta('gallery_options', 'gallery_lists');
+        foreach ($repeat_item as $index => $fields) {
+          $image_url = wp_get_attachment_image_src($fields['gallery_item'], 'full');
+        ?>
+      <div class="gallery__modal modal modal--slide" id="js-modal<?php echo $index + 1; ?>" aria-hidden="true">
         <div class="modal__overlay" tabindex="-1" data-micromodal-close>
           <div class="modal__image" role="dialog" aria-modal="true">
-            <img src="./assets/images/common/gallery1.png" alt="" data-micromodal-close />
+            <img src="<?php echo $image_url[0]; ?>" alt="" data-micromodal-close />
           </div>
         </div>
       </div>
-      <div class="modal modal--slide" id="js-modal2" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-          <div class="modal__image" role="dialog" aria-modal="true">
-            <img src="./assets/images/common/gallery2.png" alt="" data-micromodal-close />
-          </div>
-        </div>
-      </div>
-      <div class="modal modal--slide" id="js-modal3" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-          <div class="modal__image" role="dialog" aria-modal="true">
-            <img src="./assets/images/common/gallery3.png" alt="" data-micromodal-close />
-          </div>
-        </div>
-      </div>
-      <div class="modal modal--slide" id="js-modal4" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-          <div class="modal__image" role="dialog" aria-modal="true">
-            <img src="./assets/images/common/gallery4.png" alt="" data-micromodal-close />
-          </div>
-        </div>
-      </div>
-      <div class="modal modal--slide" id="js-modal5" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-          <div class="modal__image" role="dialog" aria-modal="true">
-            <img src="./assets/images/common/gallery5.png" alt="" data-micromodal-close />
-          </div>
-        </div>
-      </div>
-      <div class="modal modal--slide" id="js-modal6" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-          <div class="modal__image" role="dialog" aria-modal="true">
-            <img src="./assets/images/common/gallery6.png" alt="" data-micromodal-close />
-          </div>
-        </div>
-      </div>
+      <?php
+        }
+        ?>
     </div>
   </section>
   <?php echo get_template_part('parts-contact')?>
