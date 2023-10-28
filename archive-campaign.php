@@ -31,18 +31,10 @@
           class="category__tab"><?php echo esc_html( $taxonomy_term->name ); ?></a>
         <?php endforeach; ?>
       </div>
+      <?php if (have_posts()) : ?>
       <div class="campaign-page__items">
-        <?php
-        $wp_query = new WP_Query();
-        $my_posts = array(
-            'post_type' => 'campaign',// 投稿タイプを設定
-            'posts_per_page' => '4',// 表示する記事数を設定
-        );
+        <?php while (have_posts()) : the_post(); ?>
 
-        $wp_query->query($my_posts);
-        if ($wp_query->have_posts()) : while ($wp_query->have_posts()) : $wp_query->the_post();
-        $obj = get_post_type_object($post->post_type); //投稿タイプ情報を取得
-        ?>
         <div class="campaign-page__item campaign-card">
 
           <figure class="campaign-card__img">
@@ -83,14 +75,12 @@
             </div>
           </div>
         </div>
-        <?php endwhile;
-        endif;
-        wp_reset_postdata();
-        ?>
+        <?php endwhile; ?>
+        <?php endif;?>
       </div>
       <div class="campaign-page__pagination">
         <div class="wp-pagenavi">
-          <?php if ( function_exists( 'wp_pagenavi' ) ) { wp_pagenavi(); } ?>
+          <?php wp_pagenavi(); ?>
         </div>
       </div>
     </div>

@@ -30,25 +30,9 @@
           class="category__tab <?php if($taxonomy_term->slug === $term){ echo 'current'; } ?>"><?php echo esc_html( $taxonomy_term->name ); ?></a>
         <?php endforeach; ?>
       </div>
+      <?php if (have_posts()) : ?>
       <div class="campaign-page__items">
-        <?php
-          $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-          $type = get_query_var( 'campaign_category' ); // タクソノミーのスラッグ
-          $args = [
-            'post_type' => 'campaign', // 投稿タイプスラッグ
-            'paged' => $paged, // ページネーションがある場合に必要
-            'posts_per_page' => 4, // 表示件数（変更不要）
-            'tax_query' => array(
-              array(
-                'taxonomy' => 'campaign_category', // タクソノミーのスラッグ
-                'field' => 'slug', // ターム名をスラッグで指定する（変更不要）
-                'terms' => $type,
-              ),
-            )
-          ];
-          $wp_query = new WP_Query($args);
-          if (have_posts()): while (have_posts()): the_post();
-          ?>
+        <?php while (have_posts()) : the_post(); ?>
         <div class="campaign-page__item campaign-card">
           <figure class="campaign-card__img">
             <?php the_post_thumbnail(); ?>
@@ -90,7 +74,6 @@
         </div>
         <?php endwhile;
         endif;
-        wp_reset_postdata();
         ?>
       </div>
       <div class="campaign-page__pagination">

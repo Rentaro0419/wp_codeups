@@ -21,7 +21,6 @@
           <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/common/fish-green-right.png')); ?>"
             alt="キンギョハナダイ" />
         </div>
-
         <div class="price-page__block">
           <dl class="price-page__content">
             <dt>ライセンス講習</dt>
@@ -33,15 +32,16 @@
                   $license_subContent = esc_html($license_value['license_subContent']);
                   $license_price = esc_html($license_value['license_price']);
                 ?>
+              <?php if ($license_content && $license_subContent && $license_price) : ?>
               <div class="price-page__list">
-                <?php if ($license_content && $license_subContent && $license_price) : ?>
                 <div class="price-page__detail">
                   <?php echo $license_content; ?><br class="u-mobile"><?php echo $license_subContent; ?>
                 </div>
                 <div class="price-page__price">&yen;<?php
                           $license_prices = number_format($license_price);
                           echo $license_prices;
-                          ?></div>
+                          ?>
+                </div>
               </div>
               <?php endif; ?>
               <?php } ?>

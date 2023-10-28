@@ -32,19 +32,9 @@
       </div>
       <div class="voice-page__block">
 
+        <?php if (have_posts()) : ?>
         <div class="voice-page__content voice-cards">
-
-          <?php
-                $wp_query = new WP_Query();
-                $my_posts = array(
-                    'post_type' => 'voice',// 投稿タイプを設定
-                    'posts_per_page' => '6',// 表示する記事数を設定
-                );
-
-                $wp_query->query($my_posts);
-                if ($wp_query->have_posts()) : while ($wp_query->have_posts()) : $wp_query->the_post();
-                $obj = get_post_type_object($post->post_type); //投稿タイプ情報を取得
-                ?>
+          <?php while (have_posts()) : the_post(); ?>
           <article class="voice-cards__item box">
             <div class="box__head">
               <div class="box__block">
@@ -74,9 +64,7 @@
             </div>
           </article>
           <?php endwhile;
-              endif;
-              wp_reset_postdata();
-              ?>
+                endif;?>
         </div>
         <div class="voice-page__pagenavi">
           <div class="wp-pagenavi">

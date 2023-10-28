@@ -32,26 +32,9 @@
       </div>
       <div class="voice-page__block">
 
+        <?php if (have_posts()) : ?>
         <div class="voice-page__content voice-cards">
-
-          <?php
-          $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-          $type = get_query_var( 'voice_category' ); // タクソノミーのスラッグ
-          $args = [
-            'post_type' => 'voice', // 投稿タイプスラッグ
-            'paged' => $paged, // ページネーションがある場合に必要
-            'posts_per_page' => 6, // 表示件数（変更不要）
-            'tax_query' => array(
-              array(
-                'taxonomy' => 'voice_category', // タクソノミーのスラッグ
-                'field' => 'slug', // ターム名をスラッグで指定する（変更不要）
-                'terms' => $type,
-              ),
-            )
-          ];
-          $wp_query = new WP_Query($args);
-          if (have_posts()): while (have_posts()): the_post();
-          ?>
+          <?php while (have_posts()) : the_post(); ?>
           <article class="voice-cards__item box">
             <div class="box__head">
               <div class="box__block">
@@ -79,9 +62,7 @@
             </div>
           </article>
           <?php endwhile;
-              endif;
-              wp_reset_postdata();
-              ?>
+              endif; ?>
         </div>
         <div class="voice-page__pagenavi">
           <div class="wp-pagenavi">

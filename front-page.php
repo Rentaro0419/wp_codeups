@@ -139,8 +139,9 @@
           <h3 class="about__content-title">Dive into <br />the Ocean</h3>
           <div class="about__content-text">
             <p>
-              ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />
-              ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
+              私たちは情熱を持ってダイビングの世界を案内するダイビングインストラクター集団です。海の美しさと驚異に魅了され、その素晴らしさを多くの人々と共有することに情熱を燃やしています。<br
+                class="u-desktop">
+              安全性を最優先に考えながら、初心者から経験豊富なダイバーまで、様々なレベルの方々に楽しいダイビング体験を提供しています。
             </p>
             <div class="about__content-btn">
               <a href="<?php echo esc_url( home_url( '/aboutus/' ) ); ?>" class="common-btn">
@@ -346,77 +347,92 @@
           <div class="price__block-items">
             <h3>ライセンス講習</h3>
             <dl>
+              <?php
+                $license_fields = SCF::get_option_meta('price_options', 'license_lists');
+                foreach ($license_fields as $license_field_name => $license_value) {
+                  $license_content = esc_html($license_value['license_content']);
+                  $license_subContent = esc_html($license_value['license_subContent']);
+                  $license_price = esc_html($license_value['license_price']);
+                ?>
+              <?php if ($license_content && $license_subContent && $license_price) : ?>
               <div class="price__block-item">
-                <dt><?php the_field('licence-course1', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('licence-price1', $page_id); ?></dd>
+                <dt><?php echo $license_content; ?><br class="u-mobile"><?php echo $license_subContent; ?></dt>
+                <dd>&yen;<?php
+                          $license_prices = number_format($license_price);
+                          echo $license_prices;
+                          ?></dd>
               </div>
-              <div class="price__block-item">
-                <dt><?php the_field('licence-course2', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('licence-price2', $page_id); ?></dd>
-              </div>
-              <div class="price__block-item">
-                <dt><?php the_field('licence-course3', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('licence-price3', $page_id); ?></dd>
-              </div>
+              <?php endif; ?>
+              <?php } ?>
             </dl>
           </div>
           <div class="price__block-items">
             <h3>体験ダイビング</h3>
             <dl>
+              <?php
+              $experience_fields = SCF::get_option_meta('price_options', 'experience_lists');
+              foreach ($experience_fields as $experience_field) {
+                $experience_content = esc_html($experience_field['experience_content']);
+                $experience_subContent = esc_html($experience_field['experience_subContent']);
+                $experience_price = esc_html($experience_field['experience_price']);
+              ?>
+              <?php if ($experience_content && $experience_subContent && $experience_price) : ?>
               <div class="price__block-item">
-                <dt><?php the_field('experience-course1', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('experience-price1' , $page_id); ?></dd>
+                <dt><?php echo $experience_content; ?><br class="u-mobile"><?php echo $experience_subContent; ?></dt>
+                <dd>&yen;<?php
+                          $experience_prices = number_format($experience_price);
+                          echo $experience_prices;
+                          ?>
+                </dd>
               </div>
-              <div class="price__block-item">
-                <dt><?php the_field('experience-course2', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('experience-price2' , $page_id); ?></dd>
-              </div>
-              <div class="price__block-item">
-                <dt><?php the_field('experience-course3', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('experience-price3' , $page_id); ?></dd>
-              </div>
-              <div class="price__block-item">
-                <dt><?php the_field('experience-course4', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('experience-price4' , $page_id); ?></dd>
-              </div>
+              <?php endif; ?>
+              <?php } ?>
             </dl>
           </div>
           <div class="price__block-items">
             <h3>ファンダイビング</h3>
             <dl>
+              <?php
+              $fan_fields = SCF::get_option_meta('price_options', 'fan_lists');
+              foreach ($fan_fields as $fan_field) {
+                $fan_content = esc_html($fan_field['fan_content']);
+                $fan_subContent = esc_html($fan_field['fan_subContent']);
+                $fan_price = esc_html($fan_field['fan_price']);
+              ?>
+              <?php if ($fan_content && $fan_subContent && $fan_price) : ?>
+
               <div class="price__block-item">
-                <dt><?php the_field('fandiving-course1', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('fandiving-price1', $page_id); ?></dd>
+                <dt> <?php echo $fan_content; ?><br class="u-mobile"><?php echo $fan_subContent; ?>
+                </dt>
+                <dd>&yen;<?php
+                          $fan_prices = number_format($fan_price);
+                          echo $fan_prices;
+                          ?></dd>
               </div>
-              <div class="price__block-item">
-                <dt><?php the_field('fandiving-course2', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('fandiving-price2', $page_id); ?></dd>
-              </div>
-              <div class="price__block-item">
-                <dt><?php the_field('fandiving-course3', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('fandiving-price3', $page_id); ?></dd>
-              </div>
-              <div class="price__block-item">
-                <dt><?php the_field('fandiving-course4', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('fandiving-price4', $page_id); ?></dd>
-              </div>
+              <?php endif; ?>
+              <?php } ?>
             </dl>
           </div>
           <div class="price__block-items">
             <h3>スペシャルダイビング</h3>
             <dl>
+              <?php
+              $special_fields = SCF::get_option_meta('price_options', 'special_lists');
+              foreach ($special_fields as $special_field) {
+                $special_content = esc_html($special_field['special_content']);
+                $special_subContent = esc_html($special_field['special_subContent']);
+                $special_price = esc_html($special_field['special_price']);
+              ?>
+              <?php if ($special_content && $special_subContent && $special_price) : ?>
               <div class="price__block-item">
-                <dt><?php the_field('special-course1', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('special-price1' , $page_id); ?></dd>
+                <dt><?php echo $special_content; ?><br class="u-mobile"><?php echo $special_subContent; ?></dt>
+                <dd>&yen;<?php
+                          $special_prices = number_format($special_price);
+                          echo $special_prices;
+                          ?></dd>
               </div>
-              <div class="price__block-item">
-                <dt><?php the_field('special-course2', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('special-price2' , $page_id); ?></dd>
-              </div>
-              <div class="price__block-item">
-                <dt><?php the_field('special-course3', $page_id); ?></dt>
-                <dd>&yen;<?php the_field('special-price3' , $page_id); ?></dd>
-              </div>
+              <?php endif; ?>
+              <?php } ?>
             </dl>
           </div>
         </div>

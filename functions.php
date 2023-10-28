@@ -27,23 +27,6 @@ add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 );
 
 
 
-// Contact Form7の送信ボタンをクリックした後の遷移先設定
-add_action( 'wp_footer', 'add_origin_thanks_page' );
-function add_origin_thanks_page() {
-$thanks = home_url('/contact-thanks/');
-  echo <<< EOC
-    <script>
-      var thanksPage = {
-        9722bf2: '{$thanks}',
-      };
-    document.addEventListener( 'wpcf7mailsent', function( event ) {
-      location = thanksPage[event.detail.contactFormId];
-    }, false );
-    </script>
-  EOC;
-}
-
-
 
 /* --------------------------------------------
  /* Archiveページ月別選択
@@ -74,8 +57,8 @@ function blog_get_archives()
     }
   }
 
-  $query = "SELECT YEAR(post_date) as `year`, MONTH(post_date) as `month` FROM $wpdb->posts WHERE `post_type` = 'post' AND `post_status` = 'publish' GROUP BY `year`, `month` ORDER BY `year` DESC, `month` ASC";
-  $arcResults = $wpdb->get_resu.bclts($query, ARRAY_A);
+$query = "SELECT YEAR(post_date) as `year`, MONTH(post_date) as `month` FROM $wpdb->posts WHERE `post_type` = 'post' AND `post_status` = 'publish' GROUP BY `year`, `month` ORDER BY `year` DESC, `month` ASC";
+  $arcResults = $wpdb->get_results($query, ARRAY_A);
   $months = array();
 
   if ($arcResults) {
@@ -89,3 +72,30 @@ function blog_get_archives()
     }
   }
 }
+
+/* --------------------------------------------
+/* 投稿ページの表示件数を変更する
+/* -------------------------------------------- */
+function custom_posts_per_page($query)
+{
+if(!is_admin() && $query->is_main_query()){
+  //カスタム投稿のスラッグを記述
+  if(is_post_type_archive('campaign')){
+    //表示件数を指定
+    $query->set('posts_per_page', 4);
+  }
+  if(is_tax('campaign_category')){
+    //表示件数を指定
+    $query->set('posts_per_page', 4);
+  }
+  if(is_post_type_archive('voice')){
+    //表示件数を指定
+    $query->set('posts_per_page', 6);
+  }
+  if(is_tax('voice_category')){
+    //表示件数を指定
+    $query->set('posts_per_page', 6);
+  }
+}
+}
+add_action('pre_get_posts', 'custom_posts_per_page');

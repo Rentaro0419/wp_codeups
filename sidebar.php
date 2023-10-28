@@ -1,7 +1,7 @@
         <?php if (is_home()) { ?>
-        <div class="blog-page__sidebar sidebar">
+        <aside class="blog-page__sidebar sidebar">
           <?php } elseif (is_single()) { ?>
-          <div class="single__sidebar sidebar">
+          <aside class="single__sidebar sidebar">
             <?php } ?>
             <div class="sidebar__article">
               <?php
@@ -171,4 +171,4 @@
                 <?php blog_get_archives(); ?>
               </ul>
             </div>
-          </div>
+          </aside>
