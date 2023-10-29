@@ -356,7 +356,7 @@
                 ?>
               <?php if ($license_content && $license_subContent && $license_price) : ?>
               <div class="price__block-item">
-                <dt><?php echo $license_content; ?><br class="u-mobile"><?php echo $license_subContent; ?></dt>
+                <dt><?php echo $license_content; ?><?php echo $license_subContent; ?></dt>
                 <dd>&yen;<?php
                           $license_prices = number_format($license_price);
                           echo $license_prices;
@@ -378,7 +378,7 @@
               ?>
               <?php if ($experience_content && $experience_subContent && $experience_price) : ?>
               <div class="price__block-item">
-                <dt><?php echo $experience_content; ?><br class="u-mobile"><?php echo $experience_subContent; ?></dt>
+                <dt><?php echo $experience_content; ?><?php echo $experience_subContent; ?></dt>
                 <dd>&yen;<?php
                           $experience_prices = number_format($experience_price);
                           echo $experience_prices;
@@ -402,7 +402,7 @@
               <?php if ($fan_content && $fan_subContent && $fan_price) : ?>
 
               <div class="price__block-item">
-                <dt> <?php echo $fan_content; ?><br class="u-mobile"><?php echo $fan_subContent; ?>
+                <dt> <?php echo $fan_content; ?><?php echo $fan_subContent; ?>
                 </dt>
                 <dd>&yen;<?php
                           $fan_prices = number_format($fan_price);
@@ -425,7 +425,7 @@
               ?>
               <?php if ($special_content && $special_subContent && $special_price) : ?>
               <div class="price__block-item">
-                <dt><?php echo $special_content; ?><br class="u-mobile"><?php echo $special_subContent; ?></dt>
+                <dt><?php echo $special_content; ?><?php echo $special_subContent; ?></dt>
                 <dd>&yen;<?php
                           $special_prices = number_format($special_price);
                           echo $special_prices;
