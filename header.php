@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html <?php language_attributes(); ?>>
 
   <head>
     <meta charset=<?php bloginfo('charset');?> />
@@ -7,16 +7,15 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="robots" content="noindex" />
     <!-- meta情報 -->
-    <title><?php the_title(); ?></title>
     <meta name="description" content="<blog_info('description')>" />
     <meta name="keywords" content="ダイビング、" />
     <!-- ogp -->
     <meta property="og:title" content="<?php the_title(); ?>" />
     <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
+    <meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>" />
     <meta property="og:image" content="" />
-    <meta property="og:site_name" content="<blog_info('name')>" />
-    <meta property="og:description" content="<blog_info('description')>" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
     <!-- ファビコン -->
     <link rel="icon" href="<?php echo esc_url(get_theme_file_uri('/assets/images/common/coral.png')); ?>" />
     <!-- swiper -->
