@@ -1764,6 +1764,23 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 	text-align: left;
 }
 
+.error.is-show {
+	display: block;
+	display: flex;
+	justify-content: center;
+}
+
+.wpcf7-not-valid {
+	background: rgba(201, 72, 0, 0.2);
+	border: 0.0625rem solid #C94800;
+	color: #fff;
+	display: block;
+}
+
+.wpcf7-not-valid-tip {
+	display: none !important;
+}
+
 .footer {
 	background: #408F95;
 	padding-bottom: 3.5rem;

@@ -148,7 +148,10 @@ $("#page-top").click(function () {
   return false; //リンク自体の無効化
 });
 
-//タブメニュー
+//* --------------------------------------------
+/* informationのタブメニュー
+/* -------------------------------------------- */
+
 var tabList = document.querySelectorAll(".js-tab");
 // タブコンテンツ
 var tabContent = document.querySelectorAll(".js-tab-content");
@@ -177,7 +180,9 @@ document.addEventListener('DOMContentLoaded', function () {
   ;
 });
 
-//sidebarのアーカイブ部分
+/* --------------------------------------------
+  /* サイドバーのアーカイブ部分
+  /* -------------------------------------------- */
 $(function () {
   $(".js-toggle-item:not(:first-of-type)").css("display", "none");
   $(".js-toggle-title").on("click", function () {
@@ -186,8 +191,9 @@ $(function () {
   });
 });
 
-//faqのクリックメニュー
-//アコーディオンメニュー
+/* --------------------------------------------
+  /* faqページのアコーディオン
+  /* -------------------------------------------- */
 $(function () {
   //クリックで動く
   $('.js-faq-title').click(function () {
@@ -196,5 +202,18 @@ $(function () {
   });
 });
 
+/* --------------------------------------------
+  /* aboutページのモーダル
+  /* -------------------------------------------- */
+
 // aboutのモーダル
 MicroModal.init({});
+
+/* --------------------------------------------
+  /* コンタクトページ　バリデーション
+  /* -------------------------------------------- */
+//送信ボタンを押した時のみバリデーションメッセージ表示
+$(".form__btn").click(function () {
+  $(".wpcf7-form-control-wrap").addClass("is-show");
+  $(".js-errorMessage").addClass("is-show");
+});
