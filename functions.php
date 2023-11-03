@@ -167,4 +167,52 @@ add_filter( 'get_the_archive_title', function ($title) {
 
 	}
     return $title;
-});
+});function custom_menu_order($menu_ord) {
+    if (!$menu_ord) return true;
+
+    return array(
+        'index.php',                 // ダッシュボード
+        'edit.php?post_type=page',   // 固定ページ
+        'edit.php',  // 投稿
+        'edit.php?post_type=voice',  // お客様の声
+        'edit.php?post_type=campaign',  // キャンペーン
+        'admin.php?page=wpcf7', //お問い合わせ
+        'admin.php?page=flamingo', //フラミンゴ（返信情報閲覧ツール）
+    );
+}
+add_filter('custom_menu_order', 'custom_menu_order'); // メニューのカスタム順序を有効化
+add_filter('menu_order', 'custom_menu_order');
+
+
+function change_post_label() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = 'ブログ'; // メインメニューの「投稿」を「ブログ」に変更
+    $submenu['edit.php'][5][0] = 'ブログ一覧'; // サブメニューの「投稿一覧」を「ブログ一覧」に変更
+    $submenu['edit.php'][10][0] = '新しいブログを追加'; // サブメニューの「新規追加」を「新しいブログを追加」に変更
+    echo '';
+}
+
+/* --------------------------------------------
+/* 項目管理画面の『投稿』の名前を変えるには
+/* -------------------------------------------- */
+
+function change_post_object() {
+    global $wp_post_types;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = 'ブログ';
+    $labels->singular_name = 'ブログ';
+    $labels->add_new = '新規追加';
+    $labels->add_new_item = '新しいブログを追加';
+    $labels->edit_item = 'ブログを編集';
+    $labels->new_item = 'ブログ';
+    $labels->view_item = 'ブログを表示';
+    $labels->search_items = 'ブログを検索';
+    $labels->not_found = 'ブログが見つかりません';
+    $labels->not_found_in_trash = 'ゴミ箱にブログはありません';
+    $labels->all_items = 'ブログ一覧';
+    $labels->menu_name = 'ブログ';
+    $labels->name_admin_bar = 'ブログ';
+}
+add_action( 'admin_menu', 'change_post_label' );
+add_action( 'init', 'change_post_object' );
