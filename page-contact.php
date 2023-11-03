@@ -24,7 +24,13 @@
         <div class="error js-errorMessage">
           <p>※必須項目が入力されていません。<br class="u-mobile">入力してください。</p>
         </div>
+        <?php if (have_posts()) : ?>
+        <?php while (have_posts()) : the_post(); ?>
+
         <?php the_content(); ?>
+
+        <?php endwhile;
+              endif; ?>
       </div>
     </div>
   </div>

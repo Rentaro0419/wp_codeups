@@ -4,38 +4,7 @@
     <div class="mv__inner">
       <div class="mv__slider swiper js-main-swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide mv__swiper-slide">
-            <div class="slide-img mv__swiper-img">
-              <picture>
-                <source srcset="<?php the_field('image1-pc'); ?>" media="(min-width:1024px)" />
-                <img src="<?php the_field('image1-sp'); ?>" alt="" />
-              </picture>
-            </div>
-          </div>
-          <div class="swiper-slide mv__swiper-slide">
-            <div class="slide-img mv__swiper-img">
-              <picture>
-                <source srcset="<?php the_field('image2-pc'); ?>" media="(min-width:1024px)" />
-                <img src="<?php the_field('image2-sp'); ?>" alt="" />
-              </picture>
-            </div>
-          </div>
-          <div class="swiper-slide mv__swiper-slide">
-            <div class="slide-img mv__swiper-img">
-              <picture>
-                <source srcset="<?php the_field('image3-pc'); ?>" media="(min-width:1024px)" />
-                <img src="<?php the_field('image3-sp'); ?>" alt="" />
-              </picture>
-            </div>
-          </div>
-          <div class="swiper-slide mv__swiper-slide">
-            <div class="slide-img mv__swiper-img">
-              <picture>
-                <source srcset="<?php the_field('image4-pc'); ?>" media="(min-width:1024px)" />
-                <img src="<?php the_field('image4-sp'); ?>" alt="" />
-              </picture>
-            </div>
-          </div>
+          <?php echoSlide(4); ?>
         </div>
         <div class="mv__title">
           <h1 class="mv__title-main">diving</h1>
@@ -44,6 +13,23 @@
       </div>
     </div>
   </div>
+
+  <?php
+function echoSlide($num) {
+    for ($i = 1; $i <= $num; $i++) {
+        ?>
+  <div class="swiper-slide mv__swiper-slide">
+    <div class="slide-img mv__swiper-img">
+      <picture>
+        <source srcset="<?php the_field('image' . $i . '-pc'); ?>" media="(min-width:1024px)" />
+        <img src="<?php the_field('image' . $i . '-sp'); ?>" alt="" />
+      </picture>
+    </div>
+  </div>
+  <?php
+    }
+}
+?>
   <section class="top-campaign campaign" id="campaign">
     <div class="campaign__inner inner">
       <div class="campaign__title title">
@@ -52,9 +38,6 @@
       </div>
       <div class="swiper campaign__slider slider js-campaign-swiper">
         <?php
-        // メインクエリを一時的に保存
-        $temp_query = $wp_query;
-
         // 新しいクエリを作成して指定の条件で投稿を取得
         $args = array(
             'post_type' => 'campaign', // 投稿タイプを指定
@@ -86,8 +69,12 @@
                 <div class="slider__price">
                   <p class="slider__price-plan">全部コミコミ(お一人様)</p>
                   <div class="slider__price-box">
+                    <?php if( get_field('list-price') ): ?>
                     <p class="slider__price-original">&yen;<?php the_field('list-price'); ?></p>
+                    <?php endif; ?>
+                    <?php if( get_field('discount-price') ): ?>
                     <p class="slider__price-discount">&yen;<?php the_field('discount-price'); ?></p>
+                    <?php endif; ?>
                   </div>
                 </div>
               </div>
@@ -193,9 +180,6 @@
       </div>
       <div class="blog__list">
         <?php
-        // メインクエリを一時的に保存
-        $temp_query = $wp_query;
-
         // 新しいクエリを作成して指定の条件で投稿を取得
         $args = array(
             'post_type' => 'post', // 投稿タイプを指定
@@ -235,8 +219,6 @@
           endif;
           // メインクエリを元に戻す
           wp_reset_postdata();
-          // メインクエリを復元
-          $wp_query = $temp_query;
           ?>
         </div>
       </div>
@@ -261,17 +243,14 @@
         <h2 class="title-jp">お客様の声</h2>
       </div>
       <?php
-                  // メインクエリを一時的に保存
-                  $temp_query = $wp_query;
+        // 新しいクエリを作成して指定の条件で投稿を取得
+        $args = array(
+            'post_type' => 'voice', // 投稿タイプを指定
+            'posts_per_page' => 2, // 表示する投稿の数を指定
+        );
 
-                  // 新しいクエリを作成して指定の条件で投稿を取得
-                  $args = array(
-                      'post_type' => 'voice', // 投稿タイプを指定
-                      'posts_per_page' => 2, // 表示する投稿の数を指定
-                  );
-
-                  $sidebar_query = new WP_Query( $args );
-              ?>
+        $sidebar_query = new WP_Query( $args );
+      ?>
       <div class="voice__items voice-cards">
         <?php if ( $sidebar_query->have_posts() ) :
                 // ループを開始
@@ -283,13 +262,16 @@
           <div class="box__head">
             <div class="box__block">
               <div class="box__meta">
-                <p class="box__meta-age"><?php the_field('age')?></p>
-                <?php
-            $taxonomy_terms = get_the_terms($post->ID, 'campaign_category'); 
-            if ( $taxonomy_terms ) {
-              echo '<p class="slider__metabox__meta-tag">'.$taxonomy_terms[0]->name.'</p>';
-            }
-            ?>
+                <?php if( get_field('age') ): ?>
+                <p class="box__meta-age">
+                  <?php the_field('age')?>
+                </p>
+                <?php endif;
+                $taxonomy_terms = get_the_terms($post->ID, 'campaign_category');
+                if ( $taxonomy_terms ) {
+                echo '<p class="slider__metabox__meta-tag">'.$taxonomy_terms[0]->name.'</p>';
+                }
+                ?>
               </div>
               <div class="box__box">
                 <h3 class="box__title">
@@ -306,13 +288,11 @@
           </div>
         </article>
         <?php
-                endwhile;
-                endif;
-                // メインクエリを元に戻す
-                wp_reset_postdata();
-                // メインクエリを復元
-                $wp_query = $temp_query;
-                ?>
+          endwhile;
+          endif;
+          // メインクエリを元に戻す
+          wp_reset_postdata();
+          ?>
       </div>
       <div class="voice__btn">
         <a href="<?php echo esc_url( home_url( '/voice/' ) ); ?>" class="common-btn">
@@ -339,10 +319,6 @@
             <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/common/price-pc.jpg')); ?>" alt="亀の泳ぐ姿" />
           </picture>
         </div>
-        <?php
-          $page_id = get_page_by_path('price');
-          $page_id = $page_id->ID; //ページIDを取得して$page_idに代入
-        ?>
         <div class="price__block-list">
           <div class="price__block-items">
             <h3>ライセンス講習</h3>
@@ -400,7 +376,6 @@
                 $fan_price = esc_html($fan_field['fan_price']);
               ?>
               <?php if ($fan_content && $fan_subContent && $fan_price) : ?>
-
               <div class="price__block-item">
                 <dt> <?php echo $fan_content; ?><?php echo $fan_subContent; ?>
                 </dt>
@@ -444,6 +419,6 @@
       </div>
     </div>
   </section>
-  <?php echo get_template_part('parts-contact')?>
+  <?php echo get_template_part('/template/parts-contact')?>
 </main>
 <?php get_footer(); ?>

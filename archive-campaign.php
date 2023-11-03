@@ -50,24 +50,44 @@
             <h3 class="slider__meta-title slider__meta-title--large">
               <?php the_title(); ?>
             </h3>
+            <?php
+            $campaignPrice = get_field('campaign_price');
+            ?>
             <div class="slider__price">
-              <p class="slider__price-plan">全部コミコミ(お一人様)</p>
+              <?php if( !empty($campaignPrice['text']) ): ?>
+              <p class="slider__price-plan"><?php echo esc_html($campaignPrice['text']); ?></p>
+              <?php endif; ?>
+
               <div class="slider__price-box">
-                <p class="slider__price-original">&yen;<?php the_field('list-price'); ?>
+                <?php if( !empty($campaignPrice['list-price']) ): ?>
+                <p class="slider__price-original">&yen;<?php echo number_format($campaignPrice['list-price']); ?>
                 </p>
-                <p class="slider__price-discount">&yen; <?php the_field('discount-price'); ?>
+                <?php endif; ?>
+
+                <?php if( !empty($campaignPrice['discount-price']) ): ?>
+                <p class="slider__price-discount">&yen;<?php echo number_format($campaignPrice['discount-price']); ?>
                 </p>
+                <?php endif; ?>
               </div>
             </div>
+            <?php
+            $campaignDetail= get_field('campaign_detail');
+            ?>
+            <?php if( !empty($campaignDetail['campaign-main-text']) ): ?>
             <p class="slider__text u-desktop">
-              <?php the_content(); ?>
+              <?php echo esc_html($campaignDetail['campaign-main-text']); ?>
             </p>
+            <?php endif; ?>
+            <?php if( !empty($campaignDetail['campaign-period']) ): ?>
             <p class="slider__term u-desktop">
-              <?php the_field('period'); ?>
+              <?php echo esc_html($campaignDetail['campaign-period']); ?>
             </p>
+            <?php endif; ?>
+            <?php if( !empty($campaignDetail['campaign-sub-text']) ): ?>
             <p class="slider__subtext u-desktop">
-              ご予約・お問い合わせはコチラ
+              <?php echo esc_html($campaignDetail['campaign-sub-text']); ?>
             </p>
+            <?php endif; ?>
             <div class="slider__btn u-desktop">
               <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="common-btn">
                 <p>Contact us</p>
@@ -76,15 +96,13 @@
           </div>
         </div>
         <?php endwhile; ?>
-        <?php endif;?>
       </div>
+      <?php endif;?>
       <div class="campaign-page__pagination">
-        <div class="wp-pagenavi">
-          <?php wp_pagenavi(); ?>
-        </div>
+        <?php wp_pagenavi(); ?>
       </div>
     </div>
   </div>
-  <?php echo get_template_part('parts-contact')?>
+  <?php echo get_template_part('/template/parts-contact')?>
 </main>
 <?php get_footer(); ?>

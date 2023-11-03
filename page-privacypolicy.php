@@ -23,11 +23,17 @@
         <div class="service__block">
           <h2 class="service__title">プライバシーポリシー</h2>
           <div class="service__content">
+            <?php if (have_posts()) : ?>
+            <?php while (have_posts()) : the_post(); ?>
+
             <?php the_content(); ?>
+
+            <?php endwhile;
+              endif; ?>
           </div>
         </div>
       </div>
     </div>
-    <?php echo get_template_part('parts-contact')?>
+    <?php echo get_template_part('/template/parts-contact')?>
 </main>
 <?php get_footer(); ?>

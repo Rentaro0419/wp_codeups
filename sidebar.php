@@ -1,19 +1,10 @@
-        <?php if (is_home()) { ?>
-        <aside class="blog-page__sidebar sidebar">
-          <?php } elseif (is_single()) { ?>
-          <aside class="single__sidebar sidebar">
-            <?php } ?>
             <div class="sidebar__article">
               <?php
-                // メインクエリを一時的に保存
-                $temp_query = $wp_query;
-
                 // 新しいクエリを作成して指定の条件で投稿を取得
                 $args = array(
                     'post_type' => 'post', // 投稿タイプを指定
                     'posts_per_page' => 3, // 表示する投稿の数を指定
                 );
-
                 $sidebar_query = new WP_Query( $args );
                 ?>
 
@@ -44,12 +35,9 @@
               <?php
                 endwhile;
                 endif;
-
                 // メインクエリを元に戻す
                 wp_reset_postdata();
-
                 // メインクエリを復元
-                $wp_query = $temp_query;
                 ?>
 
             </div>
@@ -63,7 +51,6 @@
                     'post_type' => 'voice', // 投稿タイプを指定
                     'posts_per_page' => 1, // 表示する投稿の数を指定
                 );
-
                 $sidebar_query = new WP_Query( $args );
                 ?>
 
@@ -109,9 +96,6 @@
                 <h3>キャンペーン</h3>
               </div>
               <?php
-                // メインクエリを一時的に保存
-                $temp_query = $wp_query;
-
                 // 新しいクエリを作成して指定の条件で投稿を取得
                 $args = array(
                     'post_type' => 'campaign', // 投稿タイプを指定
@@ -171,4 +155,3 @@
                 <?php blog_get_archives(); ?>
               </ul>
             </div>
-          </aside>

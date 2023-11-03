@@ -90,7 +90,7 @@
         </div>
       </div>
     </div>
-    <?php echo get_template_part('parts-contact')?>
+    <?php echo get_template_part('/template/parts-contact')?>
   </div>
 </main>
 <?php get_footer(); ?>

@@ -47,17 +47,17 @@
             </div>
             <?php endif; ?>
             <div class="blog-page__pagenavi">
-              <div class="wp-pagenavi">
-                <?php wp_pagenavi(); ?>
-              </div>
+              <?php wp_pagenavi(); ?>
             </div>
           </div>
         </div>
         <div class="block__right">
-          <?php get_sidebar(); ?>
+          <aside class="blog-page__sidebar sidebar">
+            <?php get_sidebar(); ?>
+          </aside>
         </div>
       </div>
     </div>
-    <?php echo get_template_part('parts-contact')?>
+    <?php echo get_template_part('/template/parts-contact')?>
 </main>
 <?php get_footer(); ?>

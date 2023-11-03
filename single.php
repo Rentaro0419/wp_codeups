@@ -62,11 +62,13 @@
           <?php endif; ?>
         </div>
         <div class="single__sidebar block__right">
-          <?php get_sidebar(); ?>
+          <aside class="single__sidebar sidebar">
+            <?php get_sidebar(); ?>
+          </aside>
         </div>
       </div>
     </div>
   </div>
-  <?php echo get_template_part('parts-contact')?>
+  <?php echo get_template_part('/template/parts-contact')?>
 </main>
 <?php get_footer(); ?>

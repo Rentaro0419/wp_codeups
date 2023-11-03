@@ -65,13 +65,11 @@
               endif; ?>
         </div>
         <div class="voice-page__pagenavi">
-          <div class="wp-pagenavi">
-            <?php wp_pagenavi(); ?>
-          </div>
+          <?php wp_pagenavi(); ?>
         </div>
       </div>
     </div>
   </div>
-  <?php echo get_template_part('parts-contact')?>
+  <?php echo get_template_part('/template/parts-contact')?>
 </main>
 <?php get_footer(); ?>

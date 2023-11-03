@@ -1,7 +1,7 @@
-<?php if (is_404()) { ?>
+<?php if (is_404()) : ?>
 <div id="breadcrumb" class="breadcrumbs breadcrumbs--white" vocab="http://schema.org/" typeof="BreadcrumbList">
-  <?php } else { ?>
+  <?php else : ?>
   <div id="breadcrumb" class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
-    <?php } ?>
+    <?php endif ?>
     <?php bcn_display(); ?>
   </div>

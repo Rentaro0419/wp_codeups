@@ -5,53 +5,19 @@
     <meta charset=<?php bloginfo('charset');?> />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="robots" content="noindex" />
-    <!-- meta情報 -->
-    <meta name="description" content="<blog_info('description')>" />
-    <meta name="keywords" content="ダイビング、" />
-    <!-- ogp -->
-    <meta property="og:title" content="<?php the_title(); ?>" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>" />
-    <meta property="og:image" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
-    <!-- ファビコン -->
-    <link rel="icon" href="<?php echo esc_url(get_theme_file_uri('/assets/images/common/coral.png')); ?>" />
-    <!-- swiper -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <!-- css -->
-    <link rel="stylesheet" href="<?php echo esc_url(get_theme_file_uri('/assets/css/style.css')); ?>" />
-    <!-- JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <!-- jQuery本体 -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <!-- inview.js -->
-    <script src="<?php echo esc_url(get_theme_file_uri('/assets/js/jquery.inview.min.js')); ?>">
-    </script>
-    <!-- 設定用js -->
-    <script defer src="<?php echo esc_url(get_theme_file_uri('/assets/js/script.js')); ?>"></script>
-    <!-- google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gotu&family=Lato:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif:wght@400;500;700&display=swap"
-      rel="stylesheet" />
     <?php wp_head(); ?>
   </head>
 
   <body>
     <?php wp_body_open(); ?>
-    <?php if (is_front_page()) { ?>
+    <?php if (is_front_page()) : ?>
     <div class="loading">
       <div class="loading__logo">
         <h2 class="loading__logo-main">diving</h2>
         <p class="loading__logo-sub">into the ocean</p>
       </div>
     </div>
-    <?php } ?>
+    <?php endif; ?>
     <header class="header">
       <div class="header__inner">
         <div class="header__block">

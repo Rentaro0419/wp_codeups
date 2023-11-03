@@ -14,37 +14,43 @@
     );
   }
   
+  function custom_enqueue_scripts() {
+    // ファビコン
+    wp_enqueue_style('custom-favicon', get_theme_file_uri('/assets/images/common/coral.png'));
 
-  //  add_action('after_setup_theme', 'my_setup');
-  // /* CSSとJavaScriptの読み込み */
-  // function my_script_init()
-  //   { // WordPress提供のjquery.jsを読み込まない
-  //     wp_deregister_script('jquery');
-  //     // jQueryの読み込み
-  //     wp_enqueue_script( 'jquery', '//code.jquery.com/jquery-3.6.1.min.js', "", "1.0.1", true );
-  //     // Google Fonts(2つ以上ある場合は1つずつ書く)
-  //     wp_enqueue_style( 'gotu', '//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap' );
-  //     wp_enqueue_style( 'Lexend', '//fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500&display=swap' );
-  //     // micromodal
-  //     wp_enqueue_script( 'micromodal', '//unpkg.com/micromodal/dist/micromodal.min.js', "", "1.0.1", false );
-	// 		// google maps
-	// 		wp_enqueue_script( 'map', '//maps.googleapis.com/maps/api/js?key=APIキーを入れます', "", "1.0.1", false );      
-	// 		// slick
-  //     wp_enqueue_script( 'slick', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', "", "1.0.1", true );
-  //     wp_enqueue_style( 'slick',  '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', "", "1.0.1", false );
-  //     wp_enqueue_style( 'slick-theme',  '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css', array(), '1.0.1', false );
-  //     // swiper
-  //     wp_enqueue_script( 'swiper', '//unpkg.com/swiper@8/swiper-bundle.min.js', "", "1.0.1", true );
-  //     wp_enqueue_style( 'swiper', '//unpkg.com/swiper@8/swiper-bundle.min.css', "", "1.0.1", false );
-  //     // 自作jsファイルの読み込み
-  //     wp_enqueue_script( 'main', get_template_directory_uri() . '/js/script.js?20231029', array( 'jquery' ), '1.0.1', true );
-  //     // 自作cssファイルの読み込み
-  //     wp_enqueue_style( 'style-name', get_template_directory_uri() . '/css/style.css?20231029', array(), '1.0.1', false );
-  //   }
-  //   add_action('wp_enqueue_scripts', 'my_script_init');
+    // swiper
+    wp_enqueue_style('swiper-styles', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css');
+    wp_enqueue_script('swiper-scripts', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', array(), null, true);
 
-  
-//smart custom field
+    // theme css
+    wp_enqueue_style('custom-styles', get_theme_file_uri('/assets/css/style.css'));
+
+    // JavaScript & jQuery
+    // 注意: WordPressはjQueryをバンドルしているため、独自のバージョンを読み込む前にWordPressのバージョンを登録解除することを検討してください。
+    wp_deregister_script('jquery');
+    wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.7.0.min.js', array(), '3.7.0', true);
+
+    // inview.js
+    wp_enqueue_script('inview-js', get_theme_file_uri('/assets/js/jquery.inview.min.js'), array('jquery'), null, true);
+
+    // 設定用js
+    wp_enqueue_script('custom-script', get_theme_file_uri('/assets/js/script.js'), array('jquery'), null, true);
+
+    // google font
+    wp_enqueue_style(
+        'google-fonts',
+        'https://fonts.googleapis.com/css2?family=Gotu&family=Lato:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap',
+        array(),
+        null
+      );
+}
+
+add_action('wp_enqueue_scripts', 'custom_enqueue_scripts');
+
+
+/* --------------------------------------------
+ /*///smart custom field
+ /* -------------------------------------------- */
 /**
  * @param string $page_title ページのtitle属性値
  * @param string $menu_title 管理画面のメニューに表示するタイトル
@@ -140,3 +146,25 @@ if(!is_admin() && $query->is_main_query()){
 }
 }
 add_action('pre_get_posts', 'custom_posts_per_page');
+
+/* the_archive_title 余計な文字を削除 */
+add_filter( 'get_the_archive_title', function ($title) {
+    if (is_category()) {
+        $title = single_cat_title('',false);
+    } elseif (is_tag()) {
+        $title = single_tag_title('',false);
+	} elseif (is_tax()) {
+	    $title = single_term_title('',false);
+	} elseif (is_post_type_archive() ){
+		$title = post_type_archive_title('',false);
+	} elseif (is_date()) {
+	    $title = get_the_time('Y年n月');
+	} elseif (is_search()) {
+	    $title = '検索結果：'.esc_html( get_search_query(false) );
+	} elseif (is_404()) {
+	    $title = '「404」ページが見つかりません';
+	} else {
+
+	}
+    return $title;
+});
