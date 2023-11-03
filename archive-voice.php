@@ -39,9 +39,11 @@
             <div class="box__head">
               <div class="box__block">
                 <div class="box__meta">
+                  <?php if (get_field('age')) : ?>
                   <p class="box__meta-age">
                     <?php the_field('age'); ?>
                   </p>
+                  <?php endif; ?>
                   <?php
                   $taxonomy_terms = get_the_terms($post->ID, 'voice_category'); 
                   if ( $taxonomy_terms ) {
