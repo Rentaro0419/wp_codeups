@@ -167,7 +167,9 @@ add_filter( 'get_the_archive_title', function ($title) {
 
 	}
     return $title;
-});function custom_menu_order($menu_ord) {
+});
+
+function custom_menu_order($menu_ord) {
     if (!$menu_ord) return true;
 
     return array(
@@ -183,6 +185,9 @@ add_filter( 'get_the_archive_title', function ($title) {
 add_filter('custom_menu_order', 'custom_menu_order'); // メニューのカスタム順序を有効化
 add_filter('menu_order', 'custom_menu_order');
 
+/* --------------------------------------------
+/* 項目管理画面の『投稿』の名前を変えるには
+/* -------------------------------------------- */
 
 function change_post_label() {
     global $menu;
@@ -193,9 +198,6 @@ function change_post_label() {
     echo '';
 }
 
-/* --------------------------------------------
-/* 項目管理画面の『投稿』の名前を変えるには
-/* -------------------------------------------- */
 
 function change_post_object() {
     global $wp_post_types;
