@@ -4,7 +4,38 @@
     <div class="mv__inner">
       <div class="mv__slider swiper js-main-swiper">
         <div class="swiper-wrapper">
-          <?php echoSlide(4); ?>
+
+          <!-- <div class="swiper-slide mv__swiper-slide">
+            <div class="slide-img mv__swiper-img">
+              <?php if ($imagePc) : ?>
+              <source srcset="<?php echo the_field('image2-pc'); ?>" media="(min-width:1024px)" alt="mvの画像" />
+              <?php endif; ?>
+              <?php if ($imageSp) : ?>
+              <img src="<?php echo the_field('image2-pc'); ?>" alt="mvの画像" />
+              <?php endif; ?>
+            </div>
+          </div>
+          <div class="swiper-slide mv__swiper-slide">
+            <div class="slide-img mv__swiper-img">
+              <?php if ($imagePc) : ?>
+              <source srcset="<?php echo the_field('image3-pc'); ?>" media="(min-width:1024px)" alt="mvの画像" />
+              <?php endif; ?>
+              <?php if ($imageSp) : ?>
+              <img src="<?php echo the_field('image3-pc'); ?>" alt="mvの画像" />
+              <?php endif; ?>
+            </div>
+          </div>
+          <div class="swiper-slide mv__swiper-slide">
+            <div class="slide-img mv__swiper-img">
+              <?php if ($imagePc) : ?>
+              <source srcset="<?php echo the_field('image4-pc'); ?>" media="(min-width:1024px)" alt="mvの画像" />
+              <?php endif; ?>
+              <?php if ($imageSp) : ?>
+              <img src="<?php echo the_field('image4-pc'); ?>" alt="mvの画像" />
+              <?php endif; ?>
+            </div>
+          </div> -->
+
         </div>
         <div class="mv__title">
           <h1 class="mv__title-main">diving</h1>
@@ -13,23 +44,38 @@
       </div>
     </div>
   </div>
-
   <?php
+            $imagePc= get_field('image-pc');
+            $imageSp= get_field('image-sp');
+            
+            for ($i = 1; $i <= 4; $i++) :
+            $pc_src = $imagePc['image'. $i .'-pc'];
+            $sp_src = $imageSp['image'. $i .'-sp'];
+          ?>
+  <div class="swiper-slide mv__swiper-slide">
+    <div class="slide-img mv__swiper-img">
+      <picture>
+        <source srcset="<?php echo $pc_src; ?>" media="(min-width:1024px)" alt="mvの画像" />
+        <img src="<?php echo $sp_src; ?>" alt="mvの画像" />
+      </picture>
+    </div>
+  </div>
+  <?php endfor; ?>
+  <!-- <?php
 function echoSlide($num) {
     for ($i = 1; $i <= $num; $i++) {
         ?>
   <div class="swiper-slide mv__swiper-slide">
     <div class="slide-img mv__swiper-img">
-      <picture>
-        <source srcset="<?php the_field('image' . $i . '-pc'); ?>" media="(min-width:1024px)" />
-        <img src="<?php the_field('image' . $i . '-sp'); ?>" alt="" />
-      </picture>
+      
     </div>
   </div>
   <?php
     }
 }
-?>
+?> -->
+
+
   <section class="top-campaign campaign" id="campaign">
     <div class="campaign__inner inner">
       <div class="campaign__title title">
