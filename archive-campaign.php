@@ -78,15 +78,12 @@
               <?php echo esc_html($campaignDetail['campaign-main-text']); ?>
             </p>
             <?php endif; ?>
-
             <?php $campaignPeriod = $campaignDetail['campaign-period'];
                     if ($campaignPeriod) : ?>
             <p class="slider__term u-desktop">
               <?php echo $campaignPeriod['campaign-period-start']; ?>&thinsp;-&thinsp;<?php echo $campaignPeriod['campaign-period-done']; ?>
             </p>
             <?php endif; ?>
-
-
             <?php if( !empty($campaignDetail['campaign-sub-text']) ): ?>
             <p class="slider__subtext u-desktop">
               <?php echo esc_html($campaignDetail['campaign-sub-text']); ?>
