@@ -155,6 +155,9 @@
                       class="u-mobile" />ポリシー</a>
                 </li>
                 <li class="header__drawer-nav-item header__drawer-nav-item--bold header__drawer-nav-item--padding">
+                  <a class="js-hamburger__link" href="<?php echo esc_url( home_url( '/sitemap/' ) ); ?>">サイトマップ</a>
+                </li>
+                <li class="header__drawer-nav-item header__drawer-nav-item--bold header__drawer-nav-item--padding">
                   <a class="js-hamburger__link"
                     href="<?php echo esc_url( home_url( '/terms-of-service/' ) ); ?>">利用規約</a>
                 </li>
