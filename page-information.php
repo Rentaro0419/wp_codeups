@@ -14,7 +14,7 @@
     <h1 class="mv-sub__title">information</h1>
   </section>
   <div class="inner">
-    <div class="breadcrumbs">TOP > ダイビング情報</div>
+    <?php echo get_template_part('/template/breadcrumb')?>
   </div>
   <div class="information-page">
     <div class="information-page__bg">
