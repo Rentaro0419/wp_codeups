@@ -2363,31 +2363,14 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 }
 
 .mv__slider,
-.mv__swiper-slide picture,
-.mv__swiper-img,
-.mv__swiper-slide img {
+.mv__item picture,
+.mv__item img {
 	height: inherit;
 }
 
-.mv__swiper-slide {
-	position: relative;
-}
-
-.mv__swiper-slide:before {
-	content: "";
-	display: block;
-	padding-top: 177.8666666667%;
-}
-
-.mv__swiper-slide img {
+.mv__item img {
 	-o-object-fit: cover;
-	height: 100%;
-	left: 50%;
 	object-fit: cover;
-	position: absolute;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	width: 100%;
 }
 
 .mv__title {
@@ -4019,10 +4002,6 @@ html {
 .mv-sub__title {
 	font-size: 5rem;
 	top: 48%;
-}
-
-.mv__swiper-slide:before {
-	padding-top: 53.3333333333%;
 }
 
 .mv__title {
