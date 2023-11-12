@@ -1,3 +1,5 @@
+/* リキッドレイアウト対応 */
+
 body {
 	font-family: "Noto Sans JP", sans-serif;
 }
@@ -18,8 +20,6 @@ body {
 .u-desktop {
 	display: none;
 }
-
-/* リキッドレイアウト対応 */
 
 html {
 	font-size: 16px;
@@ -2352,13 +2352,12 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 
 .mv {
 	height: 100vh;
-	min-height: 18.75rem;
-	position: relative;
 	width: 100%;
 }
 
 .mv__inner {
 	height: inherit;
+	position: relative;
 	width: 100%;
 }
 
@@ -2374,27 +2373,31 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 }
 
 .mv__title {
-	color: #fff;
 	left: 50%;
 	position: absolute;
+	text-align: center;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	z-index: 2;
+	width: 100%;
+	z-index: 10;
 }
 
-.mv__title-main {
+.mv__title-text {
+	color: #fff;
 	font-family: "Lato", sans-serif;
-	font-size: 2.5rem;
+	font-size: my-rem(40);
 	font-weight: 300;
-	letter-spacing: 0.5em;
-	text-transform: uppercase;
-	transform: translateX(5%);
+	letter-spacing: 0.54em;
+	line-height: 120%;
+	text-indent: 0.54em;
 }
 
-.mv__title-sub {
+.mv__title-subtext {
+	color: #fff;
 	font-family: "Gotu", sans-serif;
-	font-size: 1.25rem;
-	text-align: center;
+	font-size: my-rem(20);
+	font-weight: 300;
+	line-height: 165%;
 }
 
 .pagetop-btn {
@@ -4004,14 +4007,9 @@ html {
 	top: 48%;
 }
 
-.mv__title {
-	left: 50%;
-	top: 45%;
-	transform: translateX(-50%);
-}
-
-.mv__title-main {
-	font-size: 5rem;
+.mv__title-text {
+	font-size: my-rem(80);
+	line-height: 1.25;
 }
 
 .pagetop-btn {
