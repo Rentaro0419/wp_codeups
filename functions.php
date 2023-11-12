@@ -19,12 +19,16 @@
     wp_enqueue_style('custom-favicon', get_theme_file_uri('/assets/images/common/coral.png'));
 
     // swiper
-    wp_enqueue_style('swiper-styles', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css');
-    wp_enqueue_script('swiper-scripts', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', array(), null, true);
+    wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js', "", "9.0.0", true);
+  wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css', "", "9.0.0", 'all');
 
     // theme css
-    wp_enqueue_style('custom-styles', get_theme_file_uri('/assets/css/style.css'));
+    wp_enqueue_style('custom-styles', get_theme_file_uri('/assets/css/style.css?20231112'));
 
+    // micromodal
+    wp_enqueue_script('polyfill', 'https://polyfill.io/v3/polyfill.min.js?features=es6', "", "1.0.0", false);
+    wp_enqueue_script('micro-modal', 'https://unpkg.com/micromodal/dist/micromodal.min.js', [], "1.0.1", false);
+    
     // JavaScript & jQuery
     // 注意: WordPressはjQueryをバンドルしているため、独自のバージョンを読み込む前にWordPressのバージョンを登録解除することを検討してください。
     wp_deregister_script('jquery');
@@ -34,7 +38,7 @@
     wp_enqueue_script('inview-js', get_theme_file_uri('/assets/js/jquery.inview.min.js'), array('jquery'), null, true);
 
     // 設定用js
-    wp_enqueue_script('custom-script', get_theme_file_uri('/assets/js/script.js'), array('jquery'), null, true);
+    wp_enqueue_script('custom-script', get_theme_file_uri('/assets/js/script.js?20231112'), array('jquery'), null, true);
 
     // google font
     wp_enqueue_style(
@@ -218,3 +222,26 @@ function change_post_object() {
 }
 add_action( 'admin_menu', 'change_post_label' );
 add_action( 'init', 'change_post_object' );
+
+
+/* --------------------------------------------
+ /* カスタムフィールドに保存されているアクセス数を取得する
+ /* -------------------------------------------- */
+function getPostViews($post_id)
+{
+  $count_key = 'post_views_count';
+  $count = get_post_meta($post_id, $count_key, true);
+  if ($count == '') {
+    delete_post_meta($post_id, $count_key);
+    add_post_meta($post_id, $count_key, '0');
+    return "0 View";
+  }
+  return $count . ' Views';
+}
+
+/* --------------------------------------------
+ /* 【管理画面】　ACF Options Page の設定 */
+/* -------------------------------------------- */
+if (function_exists('acf_add_options_page')) {
+  acf_add_options_page();
+}
