@@ -245,3 +245,20 @@ function getPostViews($post_id)
 if (function_exists('acf_add_options_page')) {
   acf_add_options_page();
 }
+
+
+function remove_wysiwyg() {
+    remove_post_type_support( 'campaign', 'editor' );
+}
+add_action( 'init' , 'remove_wysiwyg' );
+
+//固定ページの特定部分以外はエディターを消す
+add_filter('use_block_editor_for_post',function($use_block_editor,$post){
+	if($post->post_type==='page'){
+		if(!in_array($post->post_name,['terms-of-service','privacypolicy'])){ //ページスラッグが「about」または「company」ならコンテンツエディターを非表示
+			remove_post_type_support('page','editor');
+			return false;
+		}
+	}
+	return $use_block_editor;
+},10,2);
