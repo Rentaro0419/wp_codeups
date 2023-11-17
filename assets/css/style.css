@@ -894,6 +894,10 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 	margin-top: 2.5rem;
 }
 
+.service__content p {
+	margin-bottom: 2.5rem;
+}
+
 .service__content ol {
 	list-style-type: decimal;
 }
@@ -2385,7 +2389,7 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 .mv__title-text {
 	color: #fff;
 	font-family: "Lato", sans-serif;
-	font-size: my-rem(40);
+	font-size: 2.5rem;
 	font-weight: 300;
 	letter-spacing: 0.54em;
 	line-height: 120%;
@@ -2395,7 +2399,7 @@ input[type=radio]:checked + .wpcf7-list-item-label::before {
 .mv__title-subtext {
 	color: #fff;
 	font-family: "Gotu", sans-serif;
-	font-size: my-rem(20);
+	font-size: 1.25rem;
 	font-weight: 300;
 	line-height: 165%;
 }
@@ -4008,7 +4012,7 @@ html {
 }
 
 .mv__title-text {
-	font-size: my-rem(80);
+	font-size: 5rem;
 	line-height: 1.25;
 }
 
