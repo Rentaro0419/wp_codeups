@@ -75,9 +75,10 @@
               <?php echo esc_html($campaignDetail['campaign-main-text']); ?>
             </p>
             <?php endif; ?>
-            <?php if( !empty($campaignDetail['campaign-period']) ): ?>
+            <?php $campaignPeriod = $campaignDetail['campaign-period'];
+                    if ($campaignPeriod) : ?>
             <p class="slider__term u-desktop">
-              <?php echo esc_html($campaignDetail['campaign-period']); ?>
+              <?php echo $campaignPeriod['campaign-period-start']; ?>&thinsp;-&thinsp;<?php echo $campaignPeriod['campaign-period-done']; ?>
             </p>
             <?php endif; ?>
             <?php if( !empty($campaignDetail['campaign-sub-text']) ): ?>

@@ -35,35 +35,51 @@
     <div class="footer__nav">
       <ul class="footer__nav-items">
         <li class="footer__nav-item footer__nav-item--bold">
-          <a href="campaign.html">キャンペーン</a>
+          <a href="<?php echo esc_url( home_url( '/campaign/' ) ); ?>">キャンペーン</a>
         </li>
-        <li class="footer__nav-item"><a href="#">ライセンス取得</a></li>
-        <li class="footer__nav-item"><a href="#">貸切体験ダイビング</a></li>
-        <li class="footer__nav-item"><a href="#">ナイトダイビング</a></li>
+        <li class="footer__nav-item">
+          <a href="<?php echo esc_url( home_url( '/campaign_category/licence/' ) ); ?>">ライセンス取得</a>
+        </li>
+        <li class="footer__nav-item"><a
+            href="<?php echo esc_url( home_url( '/campaign_category/experience/' ) ); ?>">体験ダイビング</a></li>
+        <li class="footer__nav-item"><a
+            href="<?php echo esc_url( home_url( '/campaign_category/fandiving/' ) ); ?>">ファンダイビング</a></li>
         <li class="footer__nav-item footer__nav-item--bold footer__nav-item--padding">
-          <a href="about.html">私たちについて</a>
+          <a href="<?php echo esc_url( home_url( '/aboutus/' ) ); ?>">私たちについて</a>
         </li>
       </ul>
       <ul class="footer__nav-items">
         <li class="footer__nav-item footer__nav-item--bold">
-          <a href="voice.html">お客様の声</a>
+          <a href="<?php echo esc_url( home_url( '/voice/' ) ); ?>">お客様の声</a>
         </li>
         <li class="footer__nav-item footer__nav-item--bold footer__nav-item--paddingbottom">
-          <a href="price.html">料金一覧</a>
+          <a href="<?php echo esc_url( home_url( '/price/' ) ); ?>">料金一覧</a>
         </li>
-        <li class="footer__nav-item js-tab-link"><a href="information.html#tab_panel-1">ライセンス講習</a></li>
-        <li class="footer__nav-item js-tab-link"><a href="information.html#tab_panel-2">体験ダイビング</a></li>
-        <li class="footer__nav-item js-tab-link"><a href="information.html#tab_panel-3">ファンダイビング</a></li>
+        <li class="footer__nav-item js-tab-link">
+          <a href="<?php echo esc_url( home_url( '/price/' ) ); ?>">ライセンス講習</a>
+        </li>
+        <li class="footer__nav-item js-tab-link">
+          <a href="<?php echo esc_url( home_url( '/price/' ) ); ?>#tab_panel-2">体験ダイビング</a>
+        </li>
+        <li class="footer__nav-item js-tab-link">
+          <a href="<?php echo esc_url( home_url( '/price/' ) ); ?>#tab_panel-3">ファンダイビング</a>
+        </li>
       </ul>
       <ul class="footer__nav-items">
         <li class="footer__nav-item footer__nav-item--bold">
           <a href="#">ダイビング情報</a>
         </li>
-        <li class="footer__nav-item js-tab-link"><a href="#">ライセンス取得</a></li>
-        <li class="footer__nav-item js-tab-link"><a href="#">体験ダイビング</a></li>
-        <li class="footer__nav-item js-tab-link"><a href="#">ファンダイビング</a></li>
+        <li class="footer__nav-item js-tab-link">
+          <a href="<?php echo esc_url( home_url( '/information/' ) ); ?>#tab_panel-1">ライセンス取得</a>
+        </li>
+        <li class="footer__nav-item js-tab-link">
+          <a href="<?php echo esc_url( home_url( '/information/' ) ); ?>#tab_panel-2">体験ダイビング</a>
+        </li>
+        <li class="footer__nav-item js-tab-link">
+          <a href="<?php echo esc_url( home_url( '/information/' ) ); ?>#tab_panel-3">ファンダイビング</a>
+        </li>
         <li class="footer__nav-item footer__nav-item--bold footer__nav-item--padding">
-          <a href="home.html">ブログ</a>
+          <a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">ブログ</a>
         </li>
       </ul>
 
