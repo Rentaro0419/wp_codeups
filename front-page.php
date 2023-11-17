@@ -6,27 +6,23 @@
       <!-- Swiper -->
       <div class="swiper1 mv__slider js-main-swiper">
         <div class="swiper-wrapper mv__items">
-          <?php for ($i = 1; $i <= 4; $i++) : ?>
           <?php
-            $mvPC = get_field('mvPC' . $i); // PCの画像配列
-            $mvSP = get_field('mvSP' . $i); // SPの画像配列
-            if ($mvPC || $mvSP) :
+            $mvPC = get_field('mvPC', 232); // PCの画像配列
+            $mvSP = get_field('mvSP', 232); // SPの画像491配列
+            $i = 1;
+            foreach($mvPC as $image):
+              if ($mvPC['mvPC'.$i] && $mvSP['mvSP'.$i]) :
             ?>
           <div class="swiper-slide mv__item">
             <picture>
               <!-- URLの場合 PC-->
-              <?php if ($mvPC && isset($mvPC['url'])) : ?>
-              <source srcset="<?php echo esc_url($mvPC['url']); ?>" media="(min-width: 768px)" alt="mvの画像" />
-              <?php endif; ?>
-
+              <source srcset="<?php echo esc_url($mvPC['mvPC'.$i]); ?>" media="(min-width: 768px)" alt="mvの画像" />
               <!-- URLの場合 SP-->
-              <?php if ($mvSP && isset($mvSP['url'])) : ?>
-              <img src="<?php echo esc_url($mvSP['url']); ?>" alt="mvの画像" />
-              <?php endif; ?>
+              <img src="<?php echo esc_url($mvSP['mvSP'.$i]); ?>" alt="mvの画像" />
             </picture>
           </div>
-          <?php endif; ?>
-          <?php endfor; ?>
+
+          <?php $i += 1; endif; endforeach; ?>
         </div>
       </div>
       <div class="mv__title">
@@ -71,15 +67,24 @@
                 echo '<p class="slider__meta-tag">'.$taxonomy_terms[0]->name.'</p>';
               }
               ?>
+                <?php
+            $campaignPrice = get_field('campaign_price');
+            ?>
                 <h3 class="slider__meta-title"><?php the_title(); ?></h3>
                 <div class="slider__price">
-                  <p class="slider__price-plan">全部コミコミ(お一人様)</p>
+                  <?php if( !empty($campaignPrice['text']) ): ?>
+                  <p class="slider__price-plan"><?php echo esc_html($campaignPrice['text']); ?></p>
+                  <?php endif; ?>
                   <div class="slider__price-box">
-                    <?php if( get_field('list-price') ): ?>
-                    <p class="slider__price-original">&yen;<?php the_field('list-price'); ?></p>
+                    <?php if( !empty($campaignPrice['list-price']) ): ?>
+                    <p class="slider__price-original">&yen;<?php echo number_format($campaignPrice['list-price']); ?>
+                    </p>
                     <?php endif; ?>
-                    <?php if( get_field('discount-price') ): ?>
-                    <p class="slider__price-discount">&yen;<?php the_field('discount-price'); ?></p>
+
+                    <?php if( !empty($campaignPrice['discount-price']) ): ?>
+                    <p class="slider__price-discount">
+                      &yen;<?php echo number_format($campaignPrice['discount-price']); ?>
+                    </p>
                     <?php endif; ?>
                   </div>
                 </div>
