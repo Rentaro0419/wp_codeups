@@ -39,8 +39,8 @@ const swiper1 = new Swiper(".js-main-swiper", {
   speed: 2000,
   allowTouchMove: false,
   autoplay: {
-    delay: 2000,
-  },
+    delay: 2000
+  }
 });
 
 //swiper
@@ -69,7 +69,7 @@ const swiper = new Swiper(".js-campaign-swiper", {
 });
 
 //画像アニメーション
-var box = $(".js-colorbox"),
+const box = $(".js-colorbox"),
   speed = 700;
 
 //.colorboxの付いた全ての要素に対して下記の処理を行う
@@ -83,27 +83,18 @@ box.each(function () {
   //inviewを使って背景色が画面に現れたら処理をする
   color.on("inview", function () {
     if (counter == 0) {
-      $(this)
-        .delay(200)
-        .animate(
-          {
-            width: "100%",
-          },
-          speed,
-          function () {
-            image.css("opacity", "1");
-            $(this).css({
-              left: "0",
-              right: "auto",
-            });
-            $(this).animate(
-              {
-                width: "0%",
-              },
-              speed
-            );
-          }
-        );
+      $(this).delay(200).animate({
+        width: "100%"
+      }, speed, function () {
+        image.css("opacity", "1");
+        $(this).css({
+          left: "0",
+          right: "auto"
+        });
+        $(this).animate({
+          width: "0%"
+        }, speed);
+      });
       counter = 1;
     }
   });
@@ -151,12 +142,9 @@ $(window).on("load", function () {
 
 // #page-topをクリックした際の設定
 $("#page-top").click(function () {
-  $("body,html").animate(
-    {
-      scrollTop: 0, //ページトップまでスクロール
-    },
-    500
-  ); //ページトップスクロールの速さ。数字が大きいほど遅くなる
+  $("body,html").animate({
+    scrollTop: 0 //ページトップまでスクロール
+  }, 500); //ページトップスクロールの速さ。数字が大きいほど遅くなる
   return false; //リンク自体の無効化
 });
 
@@ -169,26 +157,27 @@ var tabList = document.querySelectorAll(".js-tab");
 var tabContent = document.querySelectorAll(".js-tab-content");
 
 //DOMが読み込み終わったら
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
   // タブに対してクリックイベントを適用
   for (var i = 0; i < tabList.length; i++) {
-    tabList[i].addEventListener("click", tabSwitch);
+    tabList[i].addEventListener('click', tabSwitch);
   }
   // タブをクリックすると実行する関数
   function tabSwitch() {
     // activeクラスを削除
-    document.querySelectorAll(".active")[0].classList.remove("active");
-    // クリックしたタブにactiveクラスを付与
-    this.classList.add("active");
+    document.querySelectorAll('.active')[0].classList.remove('active');
+    // クリックしたタブにactiveクラスを付与    
+    this.classList.add('active');
     // showクラスを削除
-    document.querySelectorAll(".show")[0].classList.remove("show");
+    document.querySelectorAll('.show')[0].classList.remove('show');
     // タブを配列風オブジェクトとして定義
     var aryTabs = Array.prototype.slice.call(tabList);
-    // クリックしたタブの配列番号を取得
+    // クリックしたタブの配列番号を取得     
     var index = aryTabs.indexOf(this);
-    // クリックしたタブと同じ配列番号のタブコンテンツにshowクラスを付与
-    tabContent[index].classList.add("show");
+    // クリックしたタブと同じ配列番号のタブコンテンツにshowクラスを付与    
+    tabContent[index].classList.add('show');
   }
+  ;
 });
 
 /* --------------------------------------------
@@ -207,9 +196,9 @@ $(function () {
   /* -------------------------------------------- */
 $(function () {
   //クリックで動く
-  $(".js-faq-title").click(function () {
+  $('.js-faq-title').click(function () {
     $(this).toggleClass("is-active");
-    $(this).next("").slideToggle();
+    $(this).next('').slideToggle();
   });
 });
 
@@ -218,11 +207,7 @@ $(function () {
   /* -------------------------------------------- */
 
 // aboutのモーダル
-MicroModal.init({
-  awaitCloseAnimation: true,
-  awaitOpenAnimation: true,
-  disableScroll: true,
-});
+MicroModal.init({});
 
 /* --------------------------------------------
   /* コンタクトページ　バリデーション
